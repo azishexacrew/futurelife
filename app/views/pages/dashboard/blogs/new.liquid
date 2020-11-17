@@ -1,0 +1,5 @@
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id, required: true
+  function presigned_url = 'lib/data/queries/presigned_url'
+  include 'theme/futurelife/dashboard/blogs/new', presigned_url: presigned_url, user: context.current_user
+%}

@@ -1,0 +1,66 @@
+query search($id: ID, $limit: Int = 20, $status: [String!], $tag: String, $keyword: String, $category: String, $owner: String, $sort: ModelsSortInput = {created_at: {order: DESC}}, $withStatuses: Boolean = false, $withOrders: Boolean = false) {
+  items: models(
+    per_page: $limit,
+    filter: {
+      id: {value: $id},
+      model_schema_name: { value: "item" }
+      deleted_at: { exists: false }
+      properties: [
+        { name: "c__status", value_in: $status },
+        { name: "owner", value: $owner },
+        { name: "tags", contains: $tag },
+        { name: "category", starts_with: $category }
+      ]
+      or: [
+        { properties: { name: "description", contains: $keyword } }
+        { properties: { name: "name", contains: $keyword } }
+        { properties: { name: "tags", contains: $keyword } }
+        { properties: { name: "category", contains: $keyword } }
+      ]
+    },
+    sort: [$sort])
+  {
+    total_entries
+    results {
+      id
+      created_at
+      type: model_schema_name
+
+      uuid: property(name: "uuid")
+      name: property(name: "name")
+      category: property(name: "category")
+      description: property(name: "description")
+      price: property_int(name: "price")
+      tags: property_array(name: "tags")
+      cover_photo_url: property(name: "cover_photo_url")
+      c__status: property(name: "c__status")
+
+      owner: related_model(model_schema_name: "profile" join_on_property: "owner", foreign_property: "id") {
+        id
+        type: model_schema_name
+        name: property(name: "name")
+        slug: property(name: "slug")
+      }
+
+      status: related_model(join_on_property: "id", foreign_property: "object_id", model_schema_name: "status" sort: { created_at: { order: ASC } }) @include(if: $withStatuses) {
+        id
+        created_at
+        name: property(name: "name")
+        object_id: property(name: "object_id")
+      }
+
+      line_items: related_models(join_on_property: "id", foreign_property: "item_id", model_schema_name: "line_item") @include(if: $withOrders) {
+        id
+      }
+
+      photos: related_models(model_schema_name: "photo", join_on_property: "uuid", foreign_property: "object_uuid") {
+        id
+        photo: property_upload(name: "photo") {
+          file_name
+          url
+          versions
+        }
+      }
+    }
+  }
+}

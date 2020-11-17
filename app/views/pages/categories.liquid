@@ -1,0 +1,12 @@
+---
+slug: c
+---
+{% liquid
+  assign template = "/c/{+category}"
+  assign query = context.location.pathname | extract_url_params: template
+
+  function filters = 'lib/data/queries/search/filters', query: query
+  function items = 'lib/data/queries/items/search', params: query, limit: 21
+
+  include 'theme/futurelife/items/index', items: items, category: query.category, categories: categories
+%}

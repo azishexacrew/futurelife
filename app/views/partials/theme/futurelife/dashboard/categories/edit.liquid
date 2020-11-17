@@ -1,0 +1,18 @@
+<div class="main-content my-account">
+  <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Categories</li>
+    </ul>
+    <div id="primary" class="col-xs-12 col-md-12">
+        <div class="title-product">
+            <h3>Edit {{ object.name  }}</h3>
+        </div>
+        <!-- End title  -->
+        {% include 'theme/futurelife/dashboard/categories/form', object: object %}
+    </div>
+    <!-- End Primary -->
+    </div>
+    <!-- End conainer -->
+  </div>
+  <!-- End MainContent -->

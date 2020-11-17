@@ -1,0 +1,16 @@
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id, required: true
+
+  function item = 'lib/data/queries/items/find', id: params.id
+
+  unless item.id
+    render 'theme/futurelife/404', status: 404
+    break
+  endunless
+
+  include 'lib/can_edit', user_id: current_profile.id, item: item
+  function list = 'lib/data/queries/categories/search'
+  function presigned_url = 'lib/data/queries/presigned_url'
+
+  include 'theme/futurelife/dashboard/items/edit', item: item, presigned_url: presigned_url, user: context.current_user, categories: list
+%}

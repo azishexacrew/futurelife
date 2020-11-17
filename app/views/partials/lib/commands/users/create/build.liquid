@@ -1,0 +1,12 @@
+{% parse_json object %}
+  {
+    "email":       {{ object.email | json }},
+    "password":    {{ object.password | json }},
+    "uuid":        {{ '' | uuid | json }},
+    "remember_me": true
+  }
+{% endparse_json %}
+
+{% liquid
+  return object
+%}

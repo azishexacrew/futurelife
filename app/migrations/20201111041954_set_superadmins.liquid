@@ -1,0 +1,10 @@
+{% comment %} set_superadmins GraphQL queries go below {% endcomment %}
+{% graphql r %}
+mutation set_constants {
+  superadmins: constant_set(name: "superadmins", value: "aziz@dedicated-it.com"){
+    name
+    value
+  }
+}
+{% endgraphql %}
+{% log r, type: 'migrations/set_superadmins' %}

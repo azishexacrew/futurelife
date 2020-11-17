@@ -1,0 +1,12 @@
+---
+method: post
+---
+{% liquid
+  function object = 'lib/commands/sessions/create', object: context.params.user
+
+  if object.valid
+    include 'redirect_to', url: '/'
+  else
+    include 'theme/futurelife/sessions/new', object: object
+  endif
+%}

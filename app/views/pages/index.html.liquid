@@ -1,0 +1,15 @@
+{% liquid
+  assign tables = "tables"
+  assign chairs = "chairs"
+  assign lights = "lights"
+  assign sofas = "sofas"
+  assign accessories = "accessories"
+
+  function itemsTables = 'lib/data/queries/items/tables/search', params: tables, limit: 4
+  function itemsChairs = 'lib/data/queries/items/chairs/search', params: chairs, limit: 4
+  function itemsLights = 'lib/data/queries/items/lights/search', params: lights, limit: 4
+  function itemsSofas = 'lib/data/queries/items/sofas/search', params: sofas, limit: 4
+  function itemsAccesories = 'lib/data/queries/items/accessories/search', params: accessories, limit: 4
+
+  include 'theme/futurelife/home/index', itemsTables: itemsTables, itemsChairs: itemsChairs, itemsLights: itemsLights, itemsSofas: itemsSofas, itemsAccessories: itemsAccessories
+%}

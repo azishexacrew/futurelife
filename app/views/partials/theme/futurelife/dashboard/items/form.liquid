@@ -1,0 +1,55 @@
+{% liquid
+  if item.id
+    assign path = 'update'
+  else
+    assign path = 'create'
+  endif
+  assign uuid = '' | uuid
+  assign item_uuid = item.uuid | default: uuid
+%}
+<div class="contact-form">
+  <form action="/dashboard/items/{{ path }}" method="post" class="form-horizontal">
+      {% include 'authenticity_token' %}
+      <div class="col-md-12">
+          {% if item.id %}
+          <input type="hidden" name="item[id]" value="{{ item.id }}" />
+          {% endif %}
+          <input type="hidden" name="item[uuid]" value="{{ item_uuid }}" />
+          <div class="form-group">
+              <label class=" control-label" for="inputfname">Name</label>
+              <input type="text" class="form-control" id="inp]utfname" placeholder="Enter name..." name="item[name]" value="{{ item.name }}" autofocus required>
+              {% include 'theme/futurelife/field_error', errors: object.errors.name %}
+          </div>
+          <div class="form-group">
+              <label class=" control-label" for="photos">Photos</label>
+              {% include 'theme/futurelife/dashboard/photos/uppy_area' %}
+          </div>
+          <div class="form-group col-md-12">
+            <label for="category" class=" control-label">Category</label>
+            <select class="form-control" id="category" name="item[category]">
+              {% for category in categories.results %}
+                <option value="{{ category.key }}" {% if item.category == category.key %}selected{% endif %}>
+                  {{ category.key }}
+                </option>
+              {% endfor %}
+            </select>
+            {% include 'theme/futurelife/field_error', errors: object.errors.category %}
+        </div>
+          <div class="form-group">
+              <label class=" control-label" for="description">Description</label>
+              <textarea class="form-control" placeholder="Enter your description" name="item[description]">{{ item.description }}</textarea>
+              {% include 'theme/futurelife/field_error', errors: object.errors.description %}
+          </div>
+          <div class="form-group">
+              <label for="price" class=" control-label">Price ($)</label>
+              <input type="number" name="item[price]" value="{{ item.price | default: 1000 | pricify_cents | replace_regex: '[\$\,]', '' }}">
+              {% include 'theme/futurelife/field_error', errors: object.errors.price %}
+          </div>
+          <button class="btn link-button" value="{{ path }}">Submit</button>
+      </div>
+  </form>
+</div>
+{% liquid
+  assign photos = photos | default: item.photos
+  render 'theme/futurelife/dashboard/photos/uppy_form', object_uuid: item_uuid, presigned_url: presigned_url, user_id: user.id, photo_type: 'photo', note: 'Images only, up to 3 files, 2MB each', max_number_of_files: 3, existing_photos: photos
+%}

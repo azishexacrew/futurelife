@@ -1,0 +1,17 @@
+---
+slug: dashboard/categories
+method: delete
+---
+{% liquid
+  function object = 'lib/data/queries/categories/find', id: context.params.id
+  function object = 'lib/commands/categories/delete', object: object
+
+  if object.valid
+    include 'redirect_to', url: '/dashboard/categories'
+  else
+    assign error = object.errors.base[0]
+
+    function item_url = 'link_to', path: '/dashboard/categories/', categories: object
+    include 'redirect_to', url: item_url, error: error
+  endif
+%}

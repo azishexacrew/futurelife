@@ -1,0 +1,20 @@
+{% parse_json sort_options %}
+{
+   "name_desc": { "properties": { "name": "name", "order": "DESC" }},
+   "name_asc": { "properties": { "name": "name", "order": "ASC" }},
+   "created_at_desc": { "created_at": { "order": "DESC" }},
+   "created_at_asc": { "created_at": { "order": "ASC" }}
+}
+{% endparse_json %}
+
+{% parse_json query %}
+{
+  "limit":        {{ limit | default: 20 }},
+  "keyword":      {{ params.keyword | json }},
+  "sort_by":      {{ params.sort_by | json }},
+  "sort":         {{ sort_options[params.sort_by] | json }},
+  "owner":        {{ owner | json }},
+}
+{% endparse_json %}
+
+{% return query %}

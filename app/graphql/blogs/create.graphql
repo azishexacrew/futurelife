@@ -1,0 +1,26 @@
+mutation create_blog($name: String!, $description: String, $tags: [String], $owner: String!, $uuid: String!) {
+  model_create(
+    model: {
+      model_schema_name: "blog"
+      properties: [
+        { name: "uuid" value: $uuid }
+        { name: "name" value: $name }
+        { name: "description" value: $description }
+        { name: "tags" value_array: $tags }
+        { name: "owner" value: $owner }
+      ]
+    }
+  ){
+    id
+    properties
+    name: property(name: "name")
+    description: property(name: "description")
+    uuid: property(name: "uuid")
+    owner: related_model(model_schema_name: "profile" join_on_property: "owner", foreign_property: "id") {
+      id
+      type: model_schema_name
+      name: property(name: "name")
+      slug: property(name: "slug")
+    }
+  }
+}

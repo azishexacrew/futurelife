@@ -1,0 +1,16 @@
+---
+slug: profile
+---
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id, followships: true, membership: true
+  assign template = "/profile/{slug}"
+  assign query = context.location.pathname | extract_url_params: template
+  function profile = 'lib/data/queries/profiles/find', slug: query.slug
+  unless profile.id
+    render 'theme/simple/404', status: 404
+    break
+  endunless
+  assign profile_id = profile.id | default: 'there-should-be'
+  render 'theme/futurelife/profile/show', user: profile, current_profile: current_profile,
+%}
+

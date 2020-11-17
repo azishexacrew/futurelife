@@ -1,0 +1,12 @@
+---
+slug: blogs
+---
+
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id
+  assign id = context.params.slug2 | split: '-' | last
+  function blog = 'lib/data/queries/blogs/find', id: id
+  include 'lib/present_or_404', property: blog.id
+
+  render 'theme/futurelife/dashboard/blogs/show', blog: blog, current_profile: current_profile, authenticity_token: context.authenticity_token
+%}

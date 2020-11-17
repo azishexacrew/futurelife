@@ -1,0 +1,254 @@
+<div class="slidershow-container">
+  <div class="container">
+      <div class="slidershow-content">
+          <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+              <!-- Carousel indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="active item">
+        <a href="#" title="banner1"><img class="lazy-image" data-original="" alt="banner1" src="{{ 'images/Futurelife-slideshow1.jpg' | asset_url }}" /></a>
+      </div>
+      <div class="item">
+        <a href="#" title="banner2"><img class="lazy-image" data-original="" alt="banner2" src="{{ 'images/Futurelife-slideshow2.jpg' | asset_url }}" /></a>
+      </div>
+      <div class="item">
+        <a href="#" title="banner2"><img class="lazy-image" data-original="" alt="banner2" src="{{ 'images/Futurelife-slideshow3.jpg' | asset_url }}" /></a>
+      </div>
+    </div>
+          <a class="carousel-control right" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+          <a class="carousel-control left" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          </div>
+      </div>
+      <!-- End slidershow-content -->
+  </div>
+</div>
+<div class="container">
+  <div class="title-text">
+      <h3>Our new products</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  </div>
+  <!-- End title text -->
+  <div class="slider-product our-new-product">
+      <ul class="tabs">
+          <li class="item" rel="tables">Tables</li>
+          <li class="item" rel="chairs">Chairs</li>
+          <li class="item" rel="lights">Lights</li>
+          <li class="item" rel="sofas">Sofas</li>
+          <li class="item" rel="accessories">Accessories</li>
+      </ul>
+      <div class="tab-container space-30">
+        <div id="chairs" class="tab-content">
+          <div class="product-tab-content products">
+            {% for chair in itemsChairs.results %}
+              <div class="item-inner">
+                  <div class="product">
+                    {% function item_url = 'link_to', path: '/items/', item: chair %}
+                      <a class="product-images" href="{{ item_url }}" title="{{ chair.name }}">
+                        {% if chair.photos.size > 1 %}
+                          <img class="primary_image" src="{{ chair.photo.versions.uncropped }}" alt="{{ chair.name }}"/>
+                          <img class="secondary_image" src="{{ chair.photo.versions.uncropped }}" alt="{{ chair.name }}"/>
+                        {% else %}
+                          {% function cover_url = 'theme/futurelife/dashboard/items/cover_url', item: chair %}
+                          <img alt="{{ chair.name }}" class="primary_image" src="{{ cover_url }}">
+                          <img alt="{{ chair.name }}" class="secondary_image" src="{{ cover_url }}">
+                        {% endif %}
+                      </a>
+                      <p class="product-title">{{ chair.name }}</p>
+                      <p class="product-price">{{ chair.price | pricify_cents }}</p>
+                      <a class="add-to-cart" href="#">Add to Cart</a>
+                      <div class="action">
+                          <a href="#" title="Like"><i class="fa fa-heart-o"></i></a>
+                          <a href="#" title="View"><i class="fa fa-compress"></i></a>
+                      </div>
+                  </div>
+              </div>
+            {% endfor %}
+          </div>
+          <!-- End product-tab-content products-->
+      </div>
+      <!-- End Chairs -->
+      </div>
+  </div>
+  <!-- End OurNewProduct -->
+  <div class="banner-center">
+      <div class="col-md-3 first">
+          <div class="banner-item">
+              <div class="text">
+                  <h2>Chairs</h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing.</p>
+              </div>
+              <div class="images">
+                  <img src="{{ 'images/Futurelife-banner-center1.png' | asset_url }}" alt="Banner-Center">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="banner-item">
+              <div class="text">
+                  <h3>Design Creative</h3>
+                  <h2>lantern</h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                  <a href="#" title="shopnow">Shop now</a>
+              </div>
+              <div class="images">
+                  <img src="{{ 'images/Futurelife-banner-center2.png' | asset_url }}" alt="Banner-Center"/>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-3 last">
+          <div class="banner-item">
+              <div class="text">
+                  <h3>ceramic <strong>LIGHT</strong></h3>
+                  <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                  <a href="#" title="shopnow">Shop Now</a>
+              </div>
+              <div class="images">
+                  <img src="{{ 'images/Futurelife-banner-center3.png' | asset_url }}" alt="Banner-center">
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Banner Center -->
+  <!-- <div class="title-text">
+      <h3>from our blog</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  </div> -->
+  <!-- End title text -->
+<!-- <div class="blog-post-container space-100">
+  <div class="blog-post-inner">
+      <div class="blog-post-item">
+          <p class="blog-post-image">
+              <a href="#" title="Post"><img src="{{ 'images/ImgBlog/1.jpg' | asset_url }}" alt=""></a>
+          </p>
+          <p class="post-date"><i class="fa fa-calendar"></i>16 December, 2015</p>
+          <h3>Integer scelerisque diam vitae aliquam fringilla.</h3>
+          <p class="read-more">
+              <a href="#" title="Read more">Read More</a>
+          </p>
+      </div> -->
+      <!-- End blog-item -->
+      <!-- <div class="blog-post-item">
+          <p class="blog-post-image">
+              <a href="#" title="Post"><img src="{{ 'images/ImgBlog/1.jpg' | asset_url }}" alt=""></a>
+          </p>
+          <p class="post-date"><i class="fa fa-calendar"></i>16 December, 2015</p>
+          <h3>Integer scelerisque diam vitae aliquam fringilla.</h3>
+          <p class="read-more">
+              <a href="#" title="Read more">Read More</a>
+          </p>
+      </div> -->
+      <!-- End blog-item -->
+      <!-- <div class="blog-post-item">
+          <p class="blog-post-image">
+              <a href="#" title="Post"><img src="{{ 'images/ImgBlog/1.jpg' | asset_url }}" alt=""></a>
+          </p>
+          <p class="post-date"><i class="fa fa-calendar"></i>16 December, 2015</p>
+          <h3>Integer scelerisque diam vitae aliquam fringilla.</h3>
+          <p class="read-more">
+              <a href="#" title="Read more">Read More</a>
+          </p>
+      </div> -->
+      <!-- End blog-item -->
+  <!-- </div> -->
+  <!-- End Blog-Post-Inner -->
+<!-- </div> -->
+<!-- End blog post -->
+
+</div>
+<!-- End container -->
+<div class="newsletter">
+<div class="text">
+  <h3>Newsletter</h3>
+  <p>Subscribe to the Futurelife mailing list to receive updates on new arrivals, special offers and other discount information.</p>
+  <form action="#" method="get" accept-charset="utf-8">
+      <input type="text" onblur="if (this.value == '') {this.value = 'Enter Your Email';}" onfocus="if(this.value != '') {this.value = '';}" value="Enter Your Email" class="input-text required-entry validate-email" title="Sign up for our newsletter" id="newsletter" name="email">
+      <button class="button" title="Subscribe" type="submit">Subscribe</button>
+  </form>
+</div>
+</div>
+<!-- End NewsLetter -->
+<div class="shipping-container">
+<div class="container">
+  <div class="col-md-4">
+      <div class="shipping-item">
+          <p class="images"></p>
+          <div class="text">
+              <h3>24/7 CUSTOMER SERVICE</h3>
+              <p>Service Support 24/7</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+      <div class="shipping-item">
+          <p class="images"></p>
+          <div class="text">
+              <h3>MONEY BACK GUARANTEE !</h3>
+              <p>100% Money Back - 30 Days</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+      <div class="shipping-item">
+          <p class="images"></p>
+          <div class="text">
+              <h3>FREE SHIPPING WORLDWIDE</h3>
+              <p>Free shipping worldwide</p>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<!-- End Shipping-Container -->
+<div id="instagram" class="show">
+<div class="item-instagram">
+  <img alt="" src="{{ 'images/11.png' | asset_url }}">
+  <div class="action">
+      <h3>instagram</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+      <a href="https://www.instagram.com/p/BF4ZSYDynU8/">View more</a>
+  </div>
+</div>
+<div class="item-instagram">
+  <img alt="" src="{{ 'images/22.png' | asset_url }}">
+  <div class="action">
+      <h3>instagram</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+      <a href="https://www.instagram.com/p/BF4ZSYDynU8/">View more</a>
+  </div>
+</div>
+<div class="item-instagram">
+  <img alt="" src="{{ 'images/33.png' | asset_url }}">
+  <div class="action">
+      <h3>instagram</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+      <a href="https://www.instagram.com/p/BF4ZSYDynU8/">View more</a>
+  </div>
+</div>
+
+<div class="item-instagram">
+  <img alt="" src="{{ 'images/44.png' | asset_url }}">
+  <div class="action">
+      <h3>instagram</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+      <a href="https://www.instagram.com/p/BF4ZSYDynU8/">View more</a>
+  </div>
+</div>
+
+<div class="item-instagram">
+  <img alt="" src="{{ 'images/55.png' | asset_url }}">
+  <div class="action">
+      <h3>instagram</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+      <a href="https://www.instagram.com/p/BF4ZSYDynU8/">View more</a>
+  </div>
+</div>
+</div>
+<!-- End banner-bottom -->

@@ -1,0 +1,5 @@
+{% assign name = user.name | default: 'Unknown' %}
+
+<div class="flex items-center mt-auto">
+  <span class="mr-2">By {{ name }}</span>
+</div>

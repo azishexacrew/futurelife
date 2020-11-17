@@ -1,0 +1,264 @@
+.blog-post-container.blog-post-container-home4{
+	margin-top: 20px !important;
+}	
+.blog-post-container{
+	margin:0 -10px;
+	h3{
+		font-size: 14px;
+		margin-bottom: 3px;
+	}
+	.read-more{
+		margin-top: 20px;
+	}
+	.post-by{
+		font-family: "texgyreadventorregular";
+		font-size: 12px;
+		text-transform: uppercase;
+		color: $gray;
+		display: inline-block;
+		width: 100%;margin: 20px 0px;
+		span{
+			&:last-child{
+				margin-left: 10px;
+				padding-left: 10px;
+				border-left: 1px solid $gray-lighter;
+			}
+		}
+	}
+	&.blog-post-columns-2{
+		.blog-post-item{
+			width: 50%;					
+			&:nth-child(2n+1){
+				padding-right: 10px;
+			}
+			&:nth-child(2n){
+				padding-left:10px;
+			}
+		}
+	}
+	&.blog-post-columns-3{
+		.blog-post-item{
+			width: 33.33%;				
+			&:nth-child(3n+1){
+				padding-right: 14px;
+			}
+			&:nth-child(3n+2){
+				padding-right: 7px;
+				padding-left: 7px;
+			}
+			&:nth-child(3n){
+				padding-left: 14px;
+			}
+		}
+	}
+	&.blog-page{
+		margin-top: 50px;
+		margin-left: 0px;
+		margin-right: 0px;
+		.blog-post-item{
+			float: left;
+			margin-bottom: 50px;
+			h3{
+				min-height: auto;
+				font-size: 15px;
+				font-weight: 700; 
+				margin-top: 30px;
+				a{
+					color: $gray;
+				}
+			}
+			.post-date{
+				margin: 5px 0px;
+			}
+			.content{
+				font-family: "Lora";
+				font-style: italic;
+				line-height: 22px;
+				color: $gray-light;
+				p{
+					margin: 5px 0px;
+				}
+			}
+			.blog-post-image{
+				background: #000;
+				border-radius: 0;
+				height: auto;
+				border:none;
+				position: relative;				
+				width: 100%;
+				&:hover{
+					border: none;
+				}
+				.action{
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					margin-top: -33px;
+					margin-left: -33px;
+					.icons{
+						font-size: 24px;
+						color: #fff;
+						background:$brand-primary;
+						padding:20px;
+						border-radius: 50%;
+						&:hover{
+							background: $brand-primary !important;
+							color: #fff !important;
+						}
+					}
+				}
+			}	
+			.blog-post-image{
+				img{	
+					width: 100%;
+					border-radius: 0 !important;
+				}
+			}
+			.posted{
+				font-family: "Lora";
+				font-style: italic;
+				color: #666;
+				margin-top: 25px;
+				i{
+					font-size: 14px;
+					color: $gray-light;
+				}
+			}
+		}
+		.contact-content{
+			font-family: "Lora";
+			font-style: italic;
+			h4{
+				color: $gray-dark;
+				margin: 20px 0px;
+				font-size: 14px;
+			}
+			label.control-label{
+				font-size: 14px;
+			}
+		}
+	}
+	.blog-colum-left{
+		padding-right:0px;
+		.image{
+			img{
+				max-width: 100%;
+			}
+		}
+	}
+	.blog-colum-left{
+		padding-left: 0px;
+	}
+	.pagination-container{
+		text-align: center;
+		nav.pagination{
+			a,span{
+				font-family: "texgyreadventorregular";
+				font-weight: 700;
+				font-size: 12px;
+				font-style: normal;
+			}
+			a.next,a.prev{
+				width: auto;
+				padding: 0 15px;
+			}
+		}
+	}
+	.share-tags{
+		display: inline-block;
+		width: 100%;
+		border-top: 1px solid #d7d7d7;
+		border-bottom: 1px solid #d7d7d7;
+		padding: 20px 0px;
+		span{
+			font-size: 13px;
+			color: $gray;
+			text-transform: uppercase;
+			font-weight: 700;
+			margin-right: 15px;
+		}
+		i{
+			color: $gray;
+			margin: 0px 5px;
+			&:hover{
+				color: $brand-primary;
+			}
+		}
+		.share{
+			float: left;
+		}
+		.tags{
+			float: right;
+		}
+		a{
+			font-family: "Lora";
+			font-style: italic;
+			margin: 0 5px;
+			color: $gray;
+			&.active{
+				color: $brand-primary;
+				text-decoration: underline;
+			}
+		}
+	}
+	.profile{
+		border-bottom: 1px solid #d7d7d7;
+		display: inline-block;
+		width: 100%;
+		.avatar{
+			@include size(125px,125px);
+			border: 3px solid $brand-primary;
+			border-radius: 50%;
+			float: left;
+			margin-right: 20px;
+			img{
+				width: 100%;
+				border-radius:50%;
+			}
+		}
+		.text{
+			font-family: "Lora";
+			font-style: italic;
+			h3{
+				text-transform: capitalize;
+				color: $gray-dark;
+				font-size: 16px;
+			}
+			p{
+				font-size: 14px;
+				color: #666;
+			}
+		}
+	}
+}
+.page-blog{
+	.blog-post-container{
+		.blog-post-item{
+			h3{
+				margin-top: 0px !important;
+			}
+			p.content{
+				margin-top:10px !important;
+			}
+			.post-by{
+				margin: 15px 0px;
+			}
+		}
+	}
+}
+@include maxtable{
+	.blog-page{
+		.widget-area{
+			padding: 0px !important;
+		}
+	}
+	#secondary.col-md-3{
+		padding: 0px !important;
+	}
+}
+@include maxmobile{
+	.blog-post-container.blog-page .blog-post-item{
+		width: 100% !important;
+		padding: 0px !important;
+	}
+} 	

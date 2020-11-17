@@ -1,0 +1,10 @@
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id, required: true
+  function blog = 'lib/data/queries/blogs/find', id: params.id
+  unless blog.id
+    render 'theme/futurelife/404', status: 404
+    break
+  endunless
+  function presigned_url = 'lib/data/queries/presigned_url'
+  include 'theme/futurelife/dashboard/blogs/edit', object: blog, presigned_url: presigned_url, user: context.current_user
+%}

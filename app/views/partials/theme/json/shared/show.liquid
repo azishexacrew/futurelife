@@ -1,0 +1,11 @@
+{% log object, type: 'showme JSON response' %}
+{% liquid
+  if object.valid
+    echo object
+  else
+    response_status 422
+    echo '{ "errors": '
+    echo object.errors
+    echo '}'
+  endif
+%}

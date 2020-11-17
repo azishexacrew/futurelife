@@ -1,0 +1,8 @@
+{% liquid
+  include 'lib/must_be_authenticated'
+  include 'lib/must_be_superadmin'
+
+  function list = 'lib/data/queries/categories/search'
+
+  include 'theme/futurelife/dashboard/categories/index', categories: list
+%}

@@ -1,0 +1,19 @@
+{% liquid
+
+  if profile
+    print "/profile/" | append: profile.slug
+    return "/profile/" | append: profile.slug
+  endif
+
+  if item
+    assign id = item.name | slugify | append: "-" | append: item.id
+    print "/items/" | append: id
+    return "/items/" | append: id
+  endif
+
+  if blog
+    assign id = blog.name | slugify | append: "-" | append: blog.id
+    print "/blogs/" | append: id
+    return "/blogs/" | append: id
+  endif
+%}

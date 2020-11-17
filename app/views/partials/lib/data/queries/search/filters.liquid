@@ -1,0 +1,7 @@
+{% liquid
+  assign search_form = '{}' | parse_json
+
+  function categories = 'lib/data/queries/categories/search', limit: 100
+  hash_assign search_form['categories'] = categories | dig: 'results' | map: 'key'
+  return search_form
+%}

@@ -1,0 +1,23 @@
+---
+slug: users
+method: post
+---
+
+{% liquid
+  function object = 'lib/commands/users/create', object: context.params.user
+
+  if object.valid
+    function session = 'lib/commands/sessions/create/execute', object: context.params.user
+    function profile = 'lib/commands/profiles/create', user: object
+
+    if profile.valid == false
+      log profile, type: 'showme'
+      break
+    endif
+
+    include 'lib/commands/events/create', type: 'account_created', actor_id: profile.id
+    include 'redirect_to', url: '/dashboard'
+  else
+    include 'theme/futurelife/users/new', object: object
+  endif
+%}

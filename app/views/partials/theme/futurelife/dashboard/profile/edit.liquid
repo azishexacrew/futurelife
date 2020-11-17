@@ -1,0 +1,61 @@
+<div class="main-content my-account">
+  <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">My Account</li>
+    </ul>
+    <div id="primary" class="col-xs-12 col-md-12">
+        <div class="title-product">
+            <h3>Profile Edit</h3>
+        </div>
+        <!-- End title  -->
+        <div class="contact-form">
+            <form action="/dashboard/profile" method="post" class="form-horizontal">
+                {% render 'authenticity_token', context: context %}
+                <input type="hidden" name="_method" value="put" />
+                <div class="col-md-12">
+                    <div class="form-group" style="text-align: center;">
+                      {% liquid
+                        assign img_url = object.avatar.photo.versions.small
+                        unless img_url
+                        assign img_url = 'images/user.svg' | asset_url
+                        endunless
+                      %}
+                      <img height="250px" src="{{ img_url }}" alt="" class="object-cover object-center w-48 h-48 mx-auto text-gray-400 rounded-full shadow-md md:mx-0">
+                    </div>
+                    <div class="mt-10">
+                      {% render 'theme/futurelife/dashboard/photos/uppy_area' %}
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label" for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="profile[name]" value="{{ object.name }}" placeholder="Enter your username...">
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label" for="firstname">Firstname</label>
+                        <input type="text" class="form-control" id="firstname" name="profile[first_name]" value="{{ object.first_name }}" placeholder="Enter your first name...">
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label" for="lastname">Lastname</label>
+                        <input type="text" class="form-control" id="lastname" name="profile[last_name]" value="{{ object.last_name }}" placeholder="Enter your last name...">
+                    </div>
+                    <div class="form-group">
+                      <label class=" control-label" for="bio">Bio</label>
+                      <textarea name="profile[bio]" id="bio" cols="30" rows="10" autocomplete="bio">{{ object.bio }}</textarea>
+                  </div>
+                  <button type="submit" class="btn link-button">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+{% render 'theme/futurelife/dashboard/photos/uppy_form',
+object_uuid: object.uuid,
+presigned_url: presigned_url,
+user_id: user.id,
+photo_type: 'avatar',
+note: 'Image up to 2MB',
+max_number_of_files: 1
+%}

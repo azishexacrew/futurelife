@@ -1,0 +1,18 @@
+{% liquid
+  case object.type
+
+  when 'profile'
+    return "/profile/" | append: object.slug
+
+  when 'item'
+    assign id = object.name | slugify | append: "-" | append: object.id
+    return "/items/" | append: id
+
+  when 'blog'
+    assign id = object.name | slugify | append: "-" | append: object.id
+    return "/blogs/" | append: id
+
+  else
+    return null
+  endcase
+%}

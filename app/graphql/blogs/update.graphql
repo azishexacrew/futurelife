@@ -1,0 +1,17 @@
+mutation update_blog($id: ID!, $name: String, $description: String, $tags: [String], $owner: String, $uuid: String) {
+  model_update(
+    id: $id
+    model: {
+      properties: [
+        { name: "name" value: $name }
+        { name: "description" value: $description }
+        { name: "tags" value_array: $tags }
+        { name: "owner" value: $owner }
+        { name: "uuid" value: $uuid }
+      ]
+    }
+  ){
+    id
+    name: property(name: "name")
+  }
+}

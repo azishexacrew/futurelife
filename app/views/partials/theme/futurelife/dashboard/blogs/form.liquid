@@ -1,0 +1,39 @@
+{% liquid
+  if object.id
+    assign path = 'update'
+  else
+    assign path = 'create'
+  endif
+  assign uuid = '' | uuid
+  assign blog_uuid = object.uuid | default: uuid
+%}
+<div class="contact-form">
+  <form action="/dashboard/blogs/{{ path }}" method="post" class="form-horizontal">
+    {% include 'authenticity_token' %}
+    <div class="col-md-12">
+      {% if object.id %}
+        <input type="hidden" name="blog[id]" value="{{ object.id }}" />
+      {% endif %}
+      <input type="hidden" name="blog[uuid]" value="{{ blog_uuid }}" />
+      <div class="form-group">
+          <label class=" control-label" for="inputfname">Title</label>
+          <input type="text" class="form-control" id="inp]utfname" placeholder="Enter title..." name="blog[name]" value="{{ object.name }}" autofocus required>
+          {% include 'theme/futurelife/field_error', errors: object.errors.name %}
+      </div>
+      <div class="form-group">
+          <label class=" control-label" for="photos">Photos</label>
+          {% include 'theme/futurelife/dashboard/photos/uppy_area' %}
+      </div>
+      <div class="form-group">
+          <label class=" control-label" for="description">Description</label>
+          <textarea class="form-control" placeholder="Enter your description" name="blog[description]">{{ object.description }}</textarea>
+          {% include 'theme/futurelife/field_error', errors: object.errors.description %}
+      </div>
+      <button class="btn link-button" value="{{ path }}">Submit</button>
+    </div>
+  </form>
+</div>
+{% liquid
+  assign photos = photos | default: object.photos
+  render 'theme/futurelife/dashboard/photos/uppy_form', object_uuid: blog_uuid, presigned_url: presigned_url, user_id: user.id, photo_type: 'photo', note: 'Images only, up to 3 files, 2MB each', max_number_of_files: 3, existing_photos: photos
+%}

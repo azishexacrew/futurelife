@@ -1,0 +1,20 @@
+name: item
+properties:
+  - name: uuid
+  - name: name
+    type: string
+  - name: description
+    type: string
+  - name: tags
+    type: array
+  - name: owner
+    type: string
+  - name: price
+    type: integer
+  - name: category
+    type: string
+  - name: cover_photo_url
+    type: string
+
+  - name: c__status
+    type: string

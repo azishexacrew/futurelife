@@ -1,0 +1,11 @@
+---
+slug: dashboard
+---
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id, required: true
+
+  include 'lib/validate_profile_completeness', profile: current_profile
+
+  assign template = "/dashboard/{slug}/{section}"
+
+%}

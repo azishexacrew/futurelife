@@ -1,0 +1,130 @@
+<div id="topbar">
+  <div class="container">
+      <div class="topbar-left">
+          <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">USD
+                <i class="fa fa-angle-down"></i></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Dolar(USD)</a></li>
+                  <li><a href="#">EURO(EUR)</a></li>
+                </ul>
+          </div>
+          <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">english
+                <i class="fa fa-angle-down"></i></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">vietnames</a></li>
+                </ul>
+          </div>
+      </div>
+      <!-- End topBar-left -->
+      <div class="voucher">
+          <a href="#" title="use voucher sale 25%">use voucher sale 25%</a>
+          <p>Best discounts and vouchaer codes for online stores</p>
+      </div>
+      <!-- End voucher -->
+      <div class="topbar-right">
+        {% if context.current_user.id %}
+            {% assign superadmins = context.constants.superadmins | split: ',' %}
+            {% if superadmins contains context.current_user.email %}
+                <div class="admin">
+                    <a href="/admin" title="admin">Admin Panel</a>
+                </div>
+            {% endif %}
+        {% else %}
+          <div class="sign-in">
+              <a href="/sign-up" title="register">Register</a>
+              <span>or</span>
+              <a href="/sessions/new" title="sign in">Sign in</a>
+          </div>
+        {% endif %}
+          <!-- End SignIn -->
+      </div>
+      <!-- End topbar-right -->
+  </div>
+  <!-- End container -->
+</div>
+<!-- End Top Bar -->
+<header id="header">
+  <div class="header-top">
+          <div class="container">
+          <div class="col-md-10 col-sm-9 col-xs-12">
+              <p class="icon-menu-mobile"><i class="fa fa-bars" ></i></p>
+              <div class="logo"><a href="/" title="Futurelife">Futurelife</a></div>
+              <nav class="menu-top">
+                  <ul>
+                      <li class="level-1 dropdown">
+                          <a href="/" title="Home">Home</a>
+                      </li>
+                      <li class="level-1"><a href="#" title="Projects">Product</a></li>
+                      <li class="level-1"><a href="#" title="Blog">Blog</a></li>
+                      <li class="level-1"><a href="#" title="about us">about us</a></li>
+                  </ul>
+              </nav>
+          </div>
+
+          <div class="col-md-2 col-sm-3 col-xs-12">
+              {% if context.current_user.id %}
+              <div class="user dropdown">
+                  <a class="icon-user" href="#" title="Account">
+                    <i class="fa fa-user"></i>
+                  </a>
+                  <div class="cart-list">
+                      <ul class="menu-level2 dropdown-menu">
+                        {% assign superadmins = context.constants.superadmins | split: ',' %}
+                            {% unless superadmins contains context.current_user.email %}
+                                <li class="level2"><a href="/welcome" title="Dashboard">Dashboard</a></li>
+                            {% endunless %}
+                        <form action="/sessions/destroy" method="post">
+                            {% include 'authenticity_token' %}
+                            <li class="level2"><button title="Logout">Logout</button></li>
+                        </form>
+                      </ul>
+                  </div>
+              </div>
+              {% endif %}
+              {% if context.current_user.id %}
+                  {% assign superadmins = context.constants.superadmins | split: ',' %}
+                  {% unless superadmins contains context.current_user.email %}
+                      <div class="cart dropdown">
+                          <a class="icon-cart" href="#" title="Cart">
+                              <i class="fa fa-shopping-cart"></i>
+                      </div>
+                  {% endunless %}
+              {% endif %}
+              <!-- End cart -->
+              <div class="search dropdown">
+                  <i class="fa fa-search dropdown-toggle" data-toggle="dropdown"></i>
+                  <div class="search-form dropdown-menu">
+                      <form action="#" method="get">
+                          <input type="text" autocomplete="off" placeholder="Enter Keywords To Search..." value="" class="ajax_autosuggest_input ac_input" name="s">
+                          <button type="submit" class="icon-search">
+                              <i class="fa fa-angle-right"></i>
+                          </button>
+                      </form>
+                  </div>
+              </div>
+              <!-- End search -->
+          </div>
+          </div>
+          <!-- End container -->
+      </div>
+      <!-- End header-top -->
+      <nav class="mega-menu-mobile">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+                <ul class="nav navbar-nav" id="navbar">
+                  <li class="level1 dropdown">
+                      <a href="/" title="Home">Home</a>
+                  </li>
+                  <li class="level1"><a href="#">Product</a></li>
+                  <li class="level1"><a href="#">Blog</a></li>
+                  <li class="level1"><a href="#">about us</a></li>
+                  <li class="level1 dropdown"><a href="#" title="Chairs">Chairs</a></li>
+                  <li class="level1"><a href="#">Light</a></li>
+                  <li class="level1"><a href="#" title="sofas">Sofas</a></li>
+                  <li class="level1"><a href="#" title="Accessories">Accessories</a></li>
+                </ul>
+              </div>
+      </nav>
+</header><!-- /header -->

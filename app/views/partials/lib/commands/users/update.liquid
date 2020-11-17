@@ -1,0 +1,10 @@
+{% liquid
+  function object = 'lib/commands/users/update/build', object: params, user: user
+  function object = 'lib/commands/users/update/check', object: object
+
+  if object.valid
+    function object = 'lib/commands/', object: object, mutation: 'users/update', selection: 'user_update'
+  endif
+
+  return object
+%}

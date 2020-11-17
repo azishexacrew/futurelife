@@ -1,0 +1,6 @@
+{% liquid
+  function current_profile = 'lib/current_profile', user_id: context.current_user.id, required: true
+  function blog = 'lib/data/queries/blogs/search', limit: 20, owner: current_profile.id, params: context.params
+
+  include 'theme/futurelife/dashboard/blogs/index', blogs: blog
+%}

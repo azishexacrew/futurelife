@@ -1,0 +1,26 @@
+{% liquid
+  if object.id
+    assign method = 'put'
+  else
+    assign method = 'post'
+  endif
+%}
+<div class="contact-form">
+  <form action="categories" method="post" class="form-horizontal">
+    {% include 'authenticity_token' %}
+    <input type="hidden" name="_method" value="{{method}}" />
+    {% if object.id %}
+      <input class="form-control" type="hidden" name="category[id]" value="{{ object.id }}" />
+    {% endif %}
+    <div class="row">
+      <div class="col-md-10 col-xs-10">
+        <label class="block" for="key">Key</label>
+        <input class="form-control" type="text" id="key" name="category[key]" value="{{ object.key }}" autofocus required />
+        {% include 'theme/futurelife/field_error', errors: object.errors.key %}
+      </div>
+      <div class="col-md-2 col-xs-2">
+        <button class="mt-5 btn btn-lg btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
